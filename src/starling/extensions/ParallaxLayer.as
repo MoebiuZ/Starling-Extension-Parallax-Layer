@@ -4,6 +4,7 @@
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.textures.Texture;
+         import starling.display.BlendMode;
 	
 	
 	public class ParallaxLayer extends Sprite {
@@ -24,8 +25,9 @@
 		private var _speed:Number;
 		private var _viewPortSize:int;
 		private var _thisSize:int;
-		private var _puntoRetorno:int;
+		private var _retPoint:int;
 		private var _autoRun:Boolean;
+     	private var _blendMode:String;
 		
 		
 		
@@ -33,13 +35,14 @@
 		private var reps:int; 
 
 
-		public function ParallaxLayer(tileTex:Texture, baseSpeed:Number, speedFactor:Number,  dir:Boolean = true, axis:Boolean = true, autoRun:Boolean = true) {
+		public function ParallaxLayer(tileTex:Texture, baseSpeed:Number, speedFactor:Number,  dir:Boolean = true, axis:Boolean = true, autoRun:Boolean = true, blendMode:String = BlendMode.AUTO) {
 			_scrollAxis = axis;
 			_scrollDir = dir;
 			_baseSpeed = baseSpeed;
 			_speedFactor = speedFactor;
 			_tileTex = tileTex;
 			_autoRun = autoRun;
+			_blendMode = blendMode;
 			
 			_speed = _baseSpeed * _speedFactor; 
 			
@@ -76,6 +79,7 @@
 			
 			
 			flatten();
+			this.blendMode = _blendMode;
 			
 			if (_scrollAxis) {
 				_thisSize = this.width;
@@ -87,10 +91,10 @@
 			
 			if (_tileSize > _viewPortSize) {
 				
-				_puntoRetorno = -_tileSize;
+				_retPoint = -_tileSize;
 				
 			} else {
-				_puntoRetorno = -(_thisSize - _viewPortSize);
+				_retPoint = -(_thisSize - _viewPortSize);
 				
 			}
 			
@@ -98,7 +102,7 @@
 		
 		
 		
-		public function avanzar(baseSpeed:Number = 0):void {
+		public function advanceStep(baseSpeed:Number = 0):void {
 			if (!_autoRun) {
 				if (baseSpeed < 0) {
 					_scrollDir = BACKWARDS;
@@ -114,14 +118,14 @@
 				if (_scrollDir) {
 					aux = this.x + _speed;
 					if (aux >= 0) {
-						this.x = _puntoRetorno;
+						this.x = _retPoint;
 					} else {
 						this.x = aux;
 					}
 				} else {
 					aux = this.x - _speed;
 							
-					if (aux <= _puntoRetorno) { 
+					if (aux <= _retPoint) { 
 						
 						this.x = 0;
 					} else {
@@ -133,13 +137,13 @@
 				if (_scrollDir) {
 					aux = this.y + _speed;
 					if (aux >= 0) {
-						this.y = _puntoRetorno;
+						this.y = _retPoint;
 					} else {
 						this.y = aux;
 					}
 				} else {
 					aux = this.y - _speed;
-					if (aux <= _puntoRetorno) {
+					if (aux <= _retPoint) {
 						this.y = 0;
 					} else {
 						this.y = aux;
