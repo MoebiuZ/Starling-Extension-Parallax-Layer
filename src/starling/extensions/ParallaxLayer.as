@@ -1,4 +1,14 @@
-﻿package starling.extensions {
+﻿// =================================================================================================
+//
+//	Parallax Layer extension for Starling Framework
+//	Copyright 2012 Antonio Rodriguez Fernandez
+//
+//	This program is free software. You can redistribute and/or modify it
+//	in accordance with the terms of the accompanying license agreement.
+//
+// =================================================================================================
+
+package starling.extensions {
 	
 	import starling.core.Starling;
 	import starling.display.Image;
