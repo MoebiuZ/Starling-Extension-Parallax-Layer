@@ -153,6 +153,16 @@
 		}
 		
 		
+		public function start(baseSpeed:Number, speedFactor:Number):void {
+			_baseSpeed = baseSpeed;
+			_speedfactor = speedFactor;
+			_autoRun = true;
+		}
+		
+		public function stop():void {
+			_autoRun = false;
+		}
+		
 		
 		public function get baseSpeed():Number {
 			return _baseSpeed;
@@ -180,7 +190,6 @@
 			_scrollDir = dir;
 		}
 		
+		
 
 	}
-	
-}
