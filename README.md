@@ -12,7 +12,7 @@ The Parallax Layer will scroll a texture (or tiled texture) seamlessly filling t
 
 You can set the base speed, speed factor, direction and axis for each layer.
 
-Layers can autoscroll (they are added to Starling juggler automatically), or can be controlled externally via advanceStep() function.
+Layers can autoscroll (they are added to Starling juggler automatically), or can be controlled externally via `advanceStep()` function.
 
 
 Installation
