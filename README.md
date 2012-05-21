@@ -8,7 +8,11 @@ You can use it for regular non-parallax scrolls as well.
 Features
 --------
 
-// TODO
+The Parallax Layer will scroll a texture (or tiled texture) seamlessly filling the entire Starling viewport width or height, regardless the size of the viewport or the texture.
+
+You can set the base speed, speed factor, direction and axis for each layer.
+
+Layers can autoscroll (they are added to Starling juggler automatically), or can be controlled externally via advanceStep() function.
 
 
 Installation
@@ -34,6 +38,13 @@ The class `ParallaxLayer` extends `Sprite` and behaves accordingly. You can add 
 	addChild(layer3);
 	addChild(layer2);
 	addChild(layer1);
+
+
+	
+Limitations
+-----------
+
+Regardless it's container and depending on the axis choosen, the ParallaxLayer MUST be placed on global x = 0 or y = 0 since it was designed to fill the entire screen on the choosen axis.
 
 
 More information
