@@ -165,7 +165,7 @@ package starling.extensions {
 		
 		public function start(baseSpeed:Number, speedFactor:Number):void {
 			_baseSpeed = baseSpeed;
-			_speedfactor = speedFactor;
+			_speedFactor = speedFactor;
 			_autoRun = true;
 		}
 		
