@@ -15,6 +15,7 @@ package starling.extensions {
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	import starling.display.BlendMode;
+	import starling.events.EnterFrameEvent;
 	
 	
 	public class ParallaxLayer extends Sprite {
@@ -108,6 +109,11 @@ package starling.extensions {
 				
 			}
 			
+			if (_autoRun) {
+				_autoRun = false;
+				start(_baseSpeed, _speedFactor);
+			}
+			
 		}
 		
 		
@@ -164,13 +170,19 @@ package starling.extensions {
 		
 		
 		public function start(baseSpeed:Number, speedFactor:Number):void {
-			_baseSpeed = baseSpeed;
-			_speedFactor = speedFactor;
-			_autoRun = true;
+			if (!_autoRun) {
+				_baseSpeed = baseSpeed;
+				_speedFactor = speedFactor;
+				_autoRun = true;
+				addEventListener(EnterFrameEvent.ENTER_FRAME, _animate);
+			}
 		}
 		
 		public function stop():void {
-			_autoRun = false;
+			if (_autoRun) {
+				_autoRun = false;
+				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, _animate);
+			}
 		}
 		
 		
@@ -199,7 +211,10 @@ package starling.extensions {
 		public function set scrollDir(dir:Boolean):void {
 			_scrollDir = dir;
 		}
-		
+				
+		private  function _animate(e:EnterFrameEvent):void {
+			advanceStep();
+		}
 		
 
 	}
