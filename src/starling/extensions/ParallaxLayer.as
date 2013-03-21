@@ -173,6 +173,7 @@ package starling.extensions {
 			if (!_autoRun) {
 				_baseSpeed = baseSpeed;
 				_speedFactor = speedFactor;
+				_speed = _baseSpeed * _speedFactor; 
 				_autoRun = true;
 				addEventListener(EnterFrameEvent.ENTER_FRAME, _animate);
 			}
